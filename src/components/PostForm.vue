@@ -1,17 +1,44 @@
 <template>
   <form @submit.prevent>
-    <h4>Создание поста</h4>
+    <h4>Запись на приём</h4>
     <my-input
-      v-model="post.title"
+      v-model="post.surname"
       type="text"
-      placeholder="Название"></my-input>
+      placeholder="Фамилия">
+    </my-input>
     <my-input
+      v-model="post.name"
+      type="text"
+      placeholder="Имя">
+    </my-input>
+      <my-input
+      v-model="post.email"
+      type="text"
+      placeholder="Эл.почта">
+    </my-input>
+      <my-input
+      v-model="post.phone"
+      type="text"
+      placeholder="Телефон">
+    </my-input>
+      <my-input
       v-model="post.body"
       type="text"
-      placeholder="Описание"></my-input>
-    <div class="postform_btn">
-      <my-button @click="createPost">Создать</my-button>
-    </div>
+      placeholder="Описание">
+    </my-input>
+      <my-input
+      v-model="post.date"
+      type="text"
+      placeholder="Дата">
+    </my-input>
+      <my-input
+      v-model="post.time"
+      type="text"
+      placeholder="Время">
+    </my-input>    
+      <div class="postform_btns">
+        <my-button @click="createPost">Создать</my-button>
+      </div>
   </form>
 </template>
 
@@ -22,11 +49,20 @@ import MyInput from './UI/MyInput.vue';
 
 
 export default {
+  components:{
+    MyButton,
+    MyInput
+  },
     data() {
         return {
             post: {
-                title: "",
-                body: ""
+              surname: "",
+              name: "",
+              email: "",
+              phone: "",
+              body: "",
+              date: "",
+              time: "",
             }
         };
     },
@@ -35,8 +71,13 @@ export default {
             this.post.id = Date.now();
             this.$emit("create", this.post);
             this.post = {
-                title: "",
-                body: ""
+                surname: "",
+                name: "",
+                email: "",
+                phone: "",
+                body: "",
+                date: "",
+                time: "",
             };
         }
     },

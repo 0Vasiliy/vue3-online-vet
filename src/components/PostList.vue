@@ -1,6 +1,6 @@
 <template>
   <div v-show="posts.length > 0">
-    <h3>Список пользователей</h3>
+    <h3>Список клиентов</h3>
     <PostItem 
     v-for="post in posts"
     :post="post"
@@ -9,7 +9,7 @@
     ></PostItem>
   </div>
   <h2 v-show="posts.length === 0">
-      Список пользователей пуст
+      Список клиентов пуст
   </h2>
 </template>
 

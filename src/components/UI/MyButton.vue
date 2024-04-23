@@ -14,10 +14,11 @@
   
   <style scoped>
      .btn{
+        display: block;
         width: 150px;
         height: 40px;
         border:  2px solid teal;
-        margin-top: 20px;
+        margin-top: 10px;
         cursor: pointer;
         color: teal;
         background: none;

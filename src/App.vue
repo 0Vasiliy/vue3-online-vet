@@ -1,9 +1,10 @@
 <template>
   <div class="app">
-    <h1>Страница с постами</h1>
+    <h1>Запись на приём Ветклиники "ЛИС"</h1>
     <my-button
     @click="showDialog"
-    >Создать пользователя</my-button>
+    >Создать клиента
+  </my-button>
     <my-dialog v-model:show="dialogVisible">
         <PostForm
           @create="createPost">
@@ -13,7 +14,7 @@
     <PostList
         :posts="posts"
         @remove="removePost">
-      </PostList>
+    </PostList>
     
 </div>
 
@@ -38,13 +39,13 @@ export default {
   data(){
     return{
       posts: [
-        {id: 1, title: 'Java script-1', body: 'Описание поста-1'},
-        {id: 2, title: 'Java script-2', body: 'Описание поста-2'},
-        {id: 3, title: 'Java script-3', body: 'Описание поста-3'},
-        {id: 4, title: 'Java script-4', body: 'Описание поста-4'},
-        {id: 5, title: 'Java script-5', body: 'Описание поста-5'},
+        {id: 1, surname: 'Петров', name:'Иван', email: 'ronnew@mail.ru', phone: '8-911-000-00-01', body: 'Кастрация кота', date: '01.05.2024', time: '11.00'},
+        {id: 2, surname: 'Иванова', name:'Елена', email: 'ronnew2@mail.ru', phone: '8-911-000-00-02', body: 'Стрижка когтей', date: '01.05.2024', time: '12.00'},
+        {id: 3, surname: 'Семёнова', name:'Ирина', email: 'ronnew3@mail.ru', phone: '8-911-000-00-03', body: 'Первичный приём', date: '01.05.2024', time: '13.00'},
+        {id: 4, surname: 'Максимов', name:'Алексей', email: 'ronnew4@mail.ru', phone: '8-911-000-00-04', body: 'Чистка ПАЖ', date: '01.05.2024', time: '14.00'},
+        {id: 5, surname: 'Горыныч', name:'Олег', email: 'ronnew5@mail.ru', phone: '8-911-000-00-05', body: 'Повторный приём', date: '01.05.2024', time: '15.00'},
       ],
-      
+      dialogVisible: false,
     }   
   },
   methods: {
