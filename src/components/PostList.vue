@@ -1,12 +1,13 @@
 <template>
-  <div v-show="posts.length > 0">
+  <div class="post-list" v-show="posts.length > 0">
     <h3>Список клиентов</h3>
     <PostItem 
     v-for="post in posts"
     :post="post"
     :key="post.id"
     @remove="$emit('remove',post)"
-    ></PostItem>
+    >  
+  </PostItem>
   </div>
   <h2 v-show="posts.length === 0">
       Список клиентов пуст
@@ -23,12 +24,21 @@ export default {
       type: Array,
       require: true
     }
-  }
+  },
+
 }
 
 </script>
 
 <style scoped>
+.post-list{
+  color: gray;
+}
+.btn_mini{
+  color:brown;
+  width: 50px;
+  height: 50px;
+}
    h3{
     margin-top: 20px;
     font-size: 24px;
