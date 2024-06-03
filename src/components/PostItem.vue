@@ -1,5 +1,5 @@
   <template>
-    <div class="post" :style="cancellationPost">
+    <div class="post" :class="[btnClass,btnClass2]">
         <div v-if="!post.isEdit">
           <div><strong>Фамилия: </strong>{{ post.surname }}</div>
           <div><strong>Имя: </strong>{{ post.name }}</div>
@@ -21,12 +21,12 @@
           <button @click="save(post)" class="btn_save">Сохранить</button>
         </div>
         <div class="post_btn">
+          <my-button @click="executed">Исполненно</my-button>
+          <my-button @click="cancellation">Отменить</my-button>
           <my-button
           @click="edit(post)"
-          v-bind:disabled="isDisabled"
+          v-bind:disabled="isDisabled"     
           >Редактировать</my-button>
-          <my-button @click="cancellation">Отменить</my-button>
-          <!-- <my-button @click="cancellation">Отменить</my-button> -->
           <my-button
             @click="$emit('remove',post)"
             v-bind:disabled="isDisabled"
@@ -46,18 +46,7 @@ import MyButton from './UI/MyButton.vue'
    data() {
     return {
       isDisabled: false,
-      cancellationPost: {
-      type: Boolean,
-      require: false, 
-      // backgroundColor : '',
-      //  backgroundColor: false,
-      //  backgroundColor: ''
-      },
-      // backgroundColor:{
-      //   type: Boolean,
-      // },
-      // cancellationPost: true,
-        // backgroundColor: true,
+      btnClass: "white-color",
     };
   },
     props:{       
@@ -73,27 +62,23 @@ import MyButton from './UI/MyButton.vue'
     save(post) {
 		post.isEdit = false;
 	},
-  cancellation(){
-    this.cancellationPost.backgroundColor = 'red';
-    this.isDisabled = !this.isDisabled;
-   
-    // if(this.cancellationPost.backgroundColor == false){
-      
-    //   this.cancellationPost.backgroundColor = 'gray';
-    // }else{
-    //   this.cancellationPost.backgroundColor = 'red';
-    // }
+ 
+   cancellation() {
+    if(this.btnClass === "white-color") {
+      this.btnClass = "red-color";
+      this.isDisabled = !this.isDisabled;
+    } else {
+     this.btnClass = "white-color";
+    }
   },
-  // cancellation2(){
-  //   this.cancellationPost.backgroundColor = 'gray'
-  // }
-//   cancellation (){
-//          if(this.cancellationPost.backgroundColor == false) {
-//             return this.cancellationPost.backgroundColor = 'gray'
-//          } else {
-//             return this.cancellationPost.backgroundColor = 'red'
-//  }
-//     },
+  executed(){
+    if(this.btnClass2 === "white-color") {
+      this.btnClass2 = "green-color";
+    } else {
+     this.btnClass2 = "white-color";
+    }
+    this.isDisabled = !this.isDisabled;
+  }
   }
 }
 
@@ -101,14 +86,17 @@ import MyButton from './UI/MyButton.vue'
   </script>
   
   <style scoped>
-.red{
-    background-color: red;
-  }
-  .gray{
-    background-color: white;
-  }
+.white-color {
+  background: white;
+ }
+  
+.red-color {
+  background: #FA8072;
+ }
+ .green-color{
+  background: #32CD32;
+ }
 .post{
-background-color: white;
 padding: 40px;
 border:  2px solid teal;
 max-width: 50%;
