@@ -1,13 +1,15 @@
 <template>
   <div class="post-list" v-show="posts.length > 0">
     <h3>Список клиентов</h3>
+    <TransitionGroup name="list">
     <PostItem 
-    v-for="post in posts"
-    :post="post"
-    :key="post.id"
-    @remove="$emit('remove',post)"
-    >  
+      v-for="post in posts"
+      :post="post"
+      :key="post.id"
+      @remove="$emit('remove',post)"
+      >  
   </PostItem>
+  </TransitionGroup>
   </div>
   <h2 v-show="posts.length === 0">
       Список клиентов пуст
@@ -47,6 +49,24 @@ export default {
     color: red;
     display: block;
   }
+  /* @media(max-width:1150px){
+    .post-list{
+      display: flex;
+      flex-direction: column;
+    }
+  } */
+.list-enter-active,
+.list-leave-active {
+  transition: all 0.5s ease;
+}
+.list-enter-from,
+.list-leave-to {
+  opacity: 0;
+  transform: translateX(30px);
+}
+.list-move {
+  transition: transform 0.6s ease;
+}
 </style>
 
 

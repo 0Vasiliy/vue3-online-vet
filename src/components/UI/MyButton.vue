@@ -18,10 +18,11 @@
         width: 150px;
         height: 40px;
         border:  2px solid teal;
-        margin-top: 10px;
+        /* margin-top: 10px; */
         cursor: pointer;
         color: teal;
         background: none;
+        border-radius: 5px;
   }
     
   </style>

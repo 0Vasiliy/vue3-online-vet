@@ -90,5 +90,8 @@ export default {
   h4{
     font-size: 24px;
   }
+  .postform_btns{
+    margin-top: 10px;
+  }
 
 </style>

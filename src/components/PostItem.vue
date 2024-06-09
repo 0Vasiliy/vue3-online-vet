@@ -20,16 +20,18 @@
           <input v-model="post.time" placeholder="Время"> 
           <button @click="save(post)" class="btn_save">Сохранить</button>
         </div>
-        <div class="post_btn">
-          <my-button @click="executed">Исполненно</my-button>
-          <my-button @click="cancellation">Отменить</my-button>
+        <div class="post_btns">
+          <my-button class="post_btn" @click="executed">Исполненно</my-button>
+          <my-button class="post_btn" @click="cancellation">Отменить</my-button>
           <my-button
           @click="edit(post)"
-          v-bind:disabled="isDisabled"     
+          v-bind:disabled="isDisabled"  
+          class="post_btn"   
           >Редактировать</my-button>
           <my-button
             @click="$emit('remove',post)"
             v-bind:disabled="isDisabled"
+            class="post_btn"
            >Удалить</my-button>
         </div>
     </div>
@@ -113,10 +115,13 @@ align-items: center;
   margin-top: 7px;
   border:1px solid teal;
  }
-  .post_btn{
+  .post_btns{
     margin-bottom: 10px;
     position:absolute;
     right: 51%;
+  }
+  .post_btn{
+    margin-top: 10px;
   }
   .btn_save{
     margin-top: 7px;
@@ -124,6 +129,15 @@ align-items: center;
     border:1px solid teal;
     cursor: pointer;
   }
-
+  @media(max-width:1150px){
+    .post{
+      max-width: 35%;
+  
+    }
+    .post_btn{
+      right: 0;
+      left:15%;
+    }
+  }
   </style>
   
