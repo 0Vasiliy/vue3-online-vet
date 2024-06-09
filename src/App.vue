@@ -10,7 +10,7 @@
       <my-input 
       v-model="searchQuery"
       class="searh"
-      placeholder="Поиск..."
+      placeholder="Поиск по фамилии..."
       ></my-input>
       <my-select 
       v-model="selectedSort"
@@ -23,7 +23,7 @@
         </PostForm>
     </my-dialog>
     <post-list
-        :posts="sortedPosts"
+        :posts="searchedPosts"
         @remove="removePost"
         >         
   </post-list>
@@ -39,7 +39,8 @@ import PostItem from '@/components/PostItem.vue';
 import MyButton from './components/UI/MyButton.vue';
 import MyDialog from './components/UI/MyDialog.vue';
 import MySelect from './components/UI/MySelect.vue';
-
+import MyInput
+ from './components/UI/MyInput.vue';
 import Axios from 'axios';
 
 export default {
@@ -49,7 +50,8 @@ export default {
     PostItem,
     MyButton,
     MyDialog,
-    MySelect
+    MySelect,
+    MyInput
 },
   data(){
     return{
@@ -93,7 +95,7 @@ export default {
       return [...this.posts].sort((post1, post2) => post1[this.selectedSort]?.localeCompare(post2[this.selectedSort]))
   },
   searchedPosts(){
-      return this.sortedPosts.filter(post => post.title.toLowerCase().includes(this.searchQuery.toLowerCase()))
+      return this.sortedPosts.filter(post => post.surname.toLowerCase().includes(this.searchQuery.toLowerCase()))
     },
  },
 
