@@ -1,5 +1,22 @@
 <template>
   <div class="app">
+    <main/>
+    <router-view/>
+  </div>  
+</template>
+<script>
+import Main from './components/Main.vue'
+
+export default{
+components:{
+  Main
+}
+}
+</script>
+<style>
+</style>
+<!-- <template>
+  <div class="app">
     <h1>Запись на приём Ветклиники "ЛИС"</h1>
     <div class="app_btns">
       <my-button
@@ -94,8 +111,14 @@ export default {
   sortedPosts() {
       return [...this.posts].sort((post1, post2) => post1[this.selectedSort]?.localeCompare(post2[this.selectedSort]))
   },
-  searchedPosts(){
+  
+    searchedPosts(){
       return this.sortedPosts.filter(post => post.surname.toLowerCase().includes(this.searchQuery.toLowerCase()))
+      || this.sortedPosts.filter(post => post.name.toLowerCase().includes(this.searchQuery.toLowerCase()))
+      || this.sortedPosts.filter(post => post.email.toLowerCase().includes(this.searchQuery.toLowerCase()))
+      || this.sortedPosts.filter(post => post.phone.toLowerCase().includes(this.searchQuery.toLowerCase()))
+      || this.sortedPosts.filter(post => post.body.toLowerCase().includes(this.searchQuery.toLowerCase()));
+  // return this.sortedPosts.filter(post => Object.values(post).some(value => value.toString().toLowerCase().
     },
  },
 
@@ -126,4 +149,4 @@ export default {
   border-radius: 5px;
   height: 40px;
 }
-</style>
+</style> -->

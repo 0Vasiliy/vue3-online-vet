@@ -2,6 +2,7 @@
   <form @submit.prevent>
     <h4>Запись на приём</h4>
     <my-input
+      v-focus
       v-model="post.surname"
       type="text"
       placeholder="Фамилия">

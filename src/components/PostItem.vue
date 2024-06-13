@@ -23,6 +23,7 @@
         <div class="post_btns">
           <my-button class="post_btn" @click="executed">Исполненно</my-button>
           <my-button class="post_btn" @click="cancellation">Отменить</my-button>
+          <!-- <my-button class="post_btn" @click="$router.push('/posts/${post.id}')">Подробнее</my-button> -->
           <my-button
           @click="edit(post)"
           v-bind:disabled="isDisabled"  
