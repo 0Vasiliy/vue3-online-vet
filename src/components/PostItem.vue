@@ -37,8 +37,21 @@
         </div>
     </div>
   </template>
-  
-  <script>
+ 
+<!--  
+<script setup>
+
+const props = defineProps({
+    post:{
+        type: Object,
+        required: true,
+        default: () => {},
+    }
+    
+})
+</script> -->
+
+<script>
 
 import MyButton from './UI/MyButton.vue'
 
@@ -51,7 +64,7 @@ import MyButton from './UI/MyButton.vue'
       isDisabled: false,
       btnClass: "white-color",
     };
-  },
+   },
     props:{       
         post:{
             type: Object,
@@ -64,31 +77,29 @@ import MyButton from './UI/MyButton.vue'
     },
     save(post) {
 		post.isEdit = false;
-	},
- 
-   cancellation() {
+	  },
+    cancellation() {
     if(this.btnClass === "white-color") {
       this.btnClass = "red-color";
       this.isDisabled = !this.isDisabled;
     } else {
      this.btnClass = "white-color";
     }
-  },
-  executed(){
+    },
+    executed(){
     if(this.btnClass2 === "white-color") {
       this.btnClass2 = "green-color";
     } else {
      this.btnClass2 = "white-color";
     }
     this.isDisabled = !this.isDisabled;
-  }
-  }
+    }
+  },
 }
-
-   
-  </script>
+ 
+</script>
   
-  <style scoped>
+<style>
 .white-color {
   background: white;
  }

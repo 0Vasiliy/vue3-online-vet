@@ -16,9 +16,15 @@
   </h2>
 </template>
 
-<script>
+<!-- <script setup>
+  import {usePostsStore} from '../stores/PostsStore';
+  const postsStore = usePostsStore();
+  postsStore.fetchPosts();
+</script> -->
 
+<script>
 import PostItem from '@/components/PostItem.vue';
+
 export default {
   components: {PostItem},
   props: {
@@ -27,7 +33,6 @@ export default {
       require: true
     }
   },
-
 }
 
 </script>
@@ -68,5 +73,4 @@ export default {
   transition: transform 0.6s ease;
 }
 </style>
-
 

@@ -28,11 +28,24 @@
           >         
     </post-list>
   </div>
-  
-  
-  </template>
-  
+</template>
+
+<!-- <script setup>
+
+const props = defineProps({
+    post:{
+        type: Object,
+        required: true,
+        default: () => {},
+    }
+    
+})
+</script> -->
+
   <script>
+
+ import axios from 'axios' 
+
   import PostForm from '@/components/PostForm.vue';
   import PostList from '@/components/PostList.vue';
   import PostItem from '@/components/PostItem.vue';
@@ -40,8 +53,7 @@
   import MyDialog from '@/components/UI/MyDialog.vue';
   import MySelect from '@/components/UI/MySelect.vue';
   import MyInput from '@/components/UI/MyInput.vue';
-  import Axios from 'axios';
-  
+
   export default {
     name: 'Main',
     components: {
@@ -53,14 +65,20 @@
       MySelect,
       MyInput
   },
+  props: {
+    posts:{
+      type: Array,
+      require: true
+    }
+  },
     data(){
       return{
         posts: [
-          {id: 1, surname: 'Петров', name:'Иван', email: 'ronnew@mail.ru', phone: '8-911-000-00-01', body: 'Кастрация кота', date: '01.03.2024', time: '11.00', isEdit: false},
-          {id: 2, surname: 'Иванова', name:'Елена', email: 'ronnew2@mail.ru', phone: '8-911-000-00-02', body: 'Стрижка когтей', date: '29.05.2024', time: '12.00', isEdit: false},
-          {id: 3, surname: 'Семёнова', name:'Ирина', email: 'ronnew3@mail.ru', phone: '8-911-000-00-03', body: 'Первичный приём', date: '05.02.2024', time: '13.00', isEdit: false},
-          {id: 4, surname: 'Максимов', name:'Алексей', email: 'ronnew4@mail.ru', phone: '8-911-000-00-04', body: 'Чистка ПАЖ', date: '12.01.2024', time: '14.00', isEdit: false},
-          {id: 5, surname: 'Горыныч', name:'Олег', email: 'ronnew5@mail.ru', phone: '8-911-000-00-05', body: 'Повторный приём', date: '01.05.2024', time: '15.00', isEdit: false},
+          // {id: 1, surname: 'Петров', name:'Иван', email: 'ronnew@mail.ru', phone: '8-911-000-00-01', body: 'Кастрация кота', date: '01.03.2024', time: '11.00', isEdit: false},
+          // {id: 2, surname: 'Иванова', name:'Елена', email: 'ronnew2@mail.ru', phone: '8-911-000-00-02', body: 'Стрижка когтей', date: '29.05.2024', time: '12.00', isEdit: false},
+          // {id: 3, surname: 'Семёнова', name:'Ирина', email: 'ronnew3@mail.ru', phone: '8-911-000-00-03', body: 'Первичный приём', date: '05.02.2024', time: '13.00', isEdit: false},
+          // {id: 4, surname: 'Максимов', name:'Алексей', email: 'ronnew4@mail.ru', phone: '8-911-000-00-04', body: 'Чистка ПАЖ', date: '12.01.2024', time: '14.00', isEdit: false},
+          // {id: 5, surname: 'Горыныч', name:'Олег', email: 'ronnew5@mail.ru', phone: '8-911-000-00-05', body: 'Повторный приём', date: '01.05.2024', time: '15.00', isEdit: false},
         ],
         dialogVisible: false,
         selectedSort: '',
@@ -89,6 +107,16 @@
         showDialog() {
           this.dialogVisible = true;
         },
+        async fetchPosts(){
+          axios.get('http://localhost:8080/server/dbvet.json')
+          .then(response => {
+              this.posts = response.data; 
+              })
+          .catch(error => {
+              console.log(error); 
+              });
+    },
+
    },
    computed:{
     sortedPosts() {
@@ -97,14 +125,16 @@
     
       searchedPosts(){
         return this.sortedPosts.filter(post => post.surname.toLowerCase().includes(this.searchQuery.toLowerCase()))
-        || this.sortedPosts.filter(post => post.name.toLowerCase().includes(this.searchQuery.toLowerCase()))
-        || this.sortedPosts.filter(post => post.email.toLowerCase().includes(this.searchQuery.toLowerCase()))
-        || this.sortedPosts.filter(post => post.phone.toLowerCase().includes(this.searchQuery.toLowerCase()))
-        || this.sortedPosts.filter(post => post.body.toLowerCase().includes(this.searchQuery.toLowerCase()));
+        // || this.sortedPosts.filter(post => post.name.toLowerCase().includes(this.searchQuery.toLowerCase()))
+        // || this.sortedPosts.filter(post => post.email.toLowerCase().includes(this.searchQuery.toLowerCase()))
+        // || this.sortedPosts.filter(post => post.phone.toLowerCase().includes(this.searchQuery.toLowerCase()))
+        // || this.sortedPosts.filter(post => post.body.toLowerCase().includes(this.searchQuery.toLowerCase()));
     // return this.sortedPosts.filter(post => Object.values(post).some(value => value.toString().toLowerCase().
       },
    },
-  
+   mounted() {
+    this.fetchPosts();
+   }
   }
   
   </script>
