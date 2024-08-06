@@ -1,4 +1,4 @@
-# kurs_1
+# vue3-online-vet
 
 ## Project setup
 ```
